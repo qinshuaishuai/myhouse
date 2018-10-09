@@ -1,5 +1,8 @@
 package com.magic.house.process;
 
+
+import org.springframework.beans.factory.annotation.Value;
+
 import java.io.*;
 import java.util.List;
 
@@ -9,6 +12,8 @@ import us.codecraft.webmagic.Request;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.model.HttpRequestBody;
+import us.codecraft.webmagic.pipeline.ConsolePipeline;
+import us.codecraft.webmagic.pipeline.JsonFilePipeline;
 import us.codecraft.webmagic.processor.PageProcessor;
 
 import javax.swing.text.html.HTML;
@@ -16,12 +21,17 @@ import javax.swing.text.html.HTML;
 
 public class PageProcess implements PageProcessor {
 
+
+    @Value("${process.html.save.path}")
+    private String savePath;
+
     private Site site = Site.me().setCharset("utf8").setRetryTimes(3).setSleepTime(100);
 
 
     @Override
     public void process(Page page) {
 
+        System.out.println("------------------------------------------------------------");
 //        System.out.println(page.getHtml());
 
 //        List<String> imgs = page.getHtml().css("div.key-list").css("div.item-mod").css("img","src").all();
@@ -32,8 +42,18 @@ public class PageProcess implements PageProcessor {
         List<String> datalink=page.getHtml().css("div.key-list").css("div.item-mod","data-link").all();
         page.addTargetRequests(datalink);
 
-        buildHtml(page.getBytes());
-        System.out.println(page.getHtml());
+        //buildHtml(page.getBytes());
+
+        page.putField("name",page.getHtml().$("h1#j-triggerlayer","text").get());
+
+        page.putField("price",page.getHtml().$("em.sp-price","text").get());
+
+        page.putField("address",page.getHtml().$("span.lpAddr-text","text").get());
+
+        if(page.getResultItems().get("name")==null){
+            page.setSkip(true);
+        }
+
     }
 
     @Override
@@ -43,7 +63,11 @@ public class PageProcess implements PageProcessor {
 
     public static void buildHtml(byte[] bytes){
         Long time=System.currentTimeMillis();
-        File file=new File("d:/h/"+time+".html");
+
+
+        String filePath="/Users/qinshuai/work/html/";
+
+        File file=new File(filePath+time+".html");
         if(!file.exists()){
             try {
                 file.createNewFile();
@@ -63,8 +87,12 @@ public class PageProcess implements PageProcessor {
         }
     }
 
+
     public static void main(String[] args) {
-        Spider.create(new PageProcess()).addUrl("https://zz.fang.anjuke.com/?from=navigation").thread(5).run();
+        String filePath="/Users/qinshuai/work/html/";
+
+        Spider.create(new PageProcess()).addUrl("https://zz.fang.anjuke.com/?from=navigation").
+                addPipeline(new ConsolePipeline()).thread(5).run();
     }
 
 }

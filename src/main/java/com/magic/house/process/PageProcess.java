@@ -1,25 +1,16 @@
 package com.magic.house.process;
 
 
+import com.magic.house.utils.Util;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 
-import java.io.*;
 import java.util.List;
 
-import jdk.internal.util.xml.impl.Input;
 import us.codecraft.webmagic.Page;
-import us.codecraft.webmagic.Request;
 import us.codecraft.webmagic.Site;
-import us.codecraft.webmagic.Spider;
-import us.codecraft.webmagic.model.HttpRequestBody;
-import us.codecraft.webmagic.pipeline.ConsolePipeline;
-import us.codecraft.webmagic.pipeline.JsonFilePipeline;
 import us.codecraft.webmagic.processor.PageProcessor;
-import us.codecraft.webmagic.selector.Selectable;
-
-import javax.swing.text.html.HTML;
-
 
 public class PageProcess implements PageProcessor {
 
@@ -31,12 +22,12 @@ public class PageProcess implements PageProcessor {
     /**列表页*/
     private static String listPage="^https://zz.fang.anjuke.com/loupan/all/p\\d+/";
     /**详情页*/
-    private static String detailPage="\"https://zz.fang.anjuke.com/loupan/\\\\d+.html\"";
+    private static String detailPage="https://zz.fang.anjuke.com/loupan/\\d+.html";
 
 
     @Override
     public void process(Page page) {
-        List<String> datalink = page.getHtml().css("div.key-list").css("div.item-mod", "data-link").all(); //获取详情页面
+        List<String> datalink = page.getHtml().css("div.key-list").css("div.item-mod", "data-link").all();
         page.addTargetRequests(datalink);
 
         if(page.getUrl().regex(detailPage).match()){
@@ -49,6 +40,7 @@ public class PageProcess implements PageProcessor {
             page.putField("address", page.getHtml().$("span.lpAddr-text", "text").get());
             String url=page.getUrl().get();
             page.putField("url",url);
+            page.putField("no", Util.extractData(url,"\\d+"));
 
 
         }
@@ -63,15 +55,5 @@ public class PageProcess implements PageProcessor {
     public Site getSite() {
         return site;
     }
-
-//    public static void main(String[] args) {
-//        String filePath = "/Users/qinshuai/work/html/";
-//
-////        Spider.create(new PageProcess()).addUrl("https://zz.fang.anjuke.com/?from=navigation").
-////                addPipeline(new ConsolePipeline()).thread(5).run();
-//
-//        Spider.create(new PageProcess()).addUrl("https://zz.fang.anjuke.com/loupan/all/p1/").
-//                addPipeline(new ConsolePipeline()).thread(1).run();
-//    }
 
 }

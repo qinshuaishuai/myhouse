@@ -1,12 +1,20 @@
 package com.magic.house;
 
 
+import com.magic.house.pipeline.AjkSQLPipeline;
 import com.magic.house.process.PageProcess;
+
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
+
 import us.codecraft.webmagic.Spider;
-import us.codecraft.webmagic.pipeline.ConsolePipeline;
 
 /**
  *
@@ -15,11 +23,22 @@ import us.codecraft.webmagic.pipeline.ConsolePipeline;
  * 描述：启动类
  */
 @SpringBootApplication
+@MapperScan("com.magic.house.dao")
 public class Application extends SpringBootServletInitializer {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
-        Spider.create(new PageProcess()).addUrl("https://zz.fang.anjuke.com/loupan/all/p1/").
-                addPipeline(new ConsolePipeline()).thread(1).run();
-
     }
+
+//    @Bean
+//    public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
+//        String ajkurl="https://zz.fang.anjuke.com/loupan/all/p1/";
+//        return args -> {
+//            Spider.create(new PageProcess()).addUrl(ajkurl).
+//                    addPipeline(new AjkSQLPipeline()).thread(1).run();
+//
+//        };
+//    }
+
+
+
 }

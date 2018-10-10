@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
  * @date 2018/10/10
  * 描述：常用的工具类
  */
-public class util {
+public class Util {
 
     public static void buildHtml(byte[] bytes,String filePath,String suffix) {
         Long time = System.currentTimeMillis();
@@ -42,7 +42,7 @@ public class util {
         Pattern p=Pattern.compile(pattern);
         Matcher matcher = p.matcher(url);
         if(matcher.find()){
-            return matcher.group(1);
+            return matcher.group();
         }
         return "";
     }

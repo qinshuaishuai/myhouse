@@ -1,6 +1,7 @@
 package com.magic.house.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  *
@@ -23,6 +24,19 @@ public class AJKBaseData implements Serializable {
     private Float price;
 
     private String html;
+
+    private Date date;
+
+    public AJKBaseData(){}
+
+    public AJKBaseData(String no, String area, String address, Float price, String html) {
+        this.no = no;
+        this.area = area;
+        this.address = address;
+        this.price = price;
+        this.html = html;
+        this.date = new Date();
+    }
 
     public Integer getId() {
         return id;
@@ -70,6 +84,14 @@ public class AJKBaseData implements Serializable {
 
     public void setHtml(String html) {
         this.html = html;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     @Override

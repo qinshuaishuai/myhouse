@@ -31,7 +31,7 @@ public class PageProcess implements PageProcessor {
         page.addTargetRequests(datalink);
 
         if(page.getUrl().regex(detailPage).match()){
-            page.putField("name", page.getHtml().$("h1#j-triggerlayer", "text").get());
+            page.putField("area", page.getHtml().$("h1#j-triggerlayer", "text").get());
             String price = page.getHtml().$("em.sp-price", "text").get();
             if (StringUtils.isBlank(price)) {
                 price = page.getHtml().$("dd.around-price span", "text").get();
@@ -39,7 +39,7 @@ public class PageProcess implements PageProcessor {
             page.putField("price", price);
             page.putField("address", page.getHtml().$("span.lpAddr-text", "text").get());
             String url=page.getUrl().get();
-            page.putField("url",url);
+            page.putField("html",url);
             page.putField("no", Util.extractData(url,"\\d+"));
 
 

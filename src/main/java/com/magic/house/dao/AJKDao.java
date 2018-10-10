@@ -3,12 +3,11 @@ package com.magic.house.dao;
 import com.magic.house.model.AJKBaseData;
 
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
-@Repository
 public interface AJKDao {
-
 
     /**
      * 插入方法

@@ -16,7 +16,7 @@ import us.codecraft.webmagic.pipeline.Pipeline;
  * 描述：安居客数据处理
  */
 
-@Component("PostInfoPipeline")
+@Component
 public class AjkSQLPipeline implements Pipeline {
 
     @Autowired
@@ -24,13 +24,15 @@ public class AjkSQLPipeline implements Pipeline {
 
     @Override
     public void process(ResultItems resultItems, Task task) {
-        String no=resultItems.get("no");
-        String area=resultItems.get("area");
-        String address=resultItems.get("address");
-        Float price=resultItems.get("price");
-        String html=resultItems.get("html");
+        System.out.println(resultItems.getAll());
+        String no=resultItems.getAll().get("no").toString();
+        String area=resultItems.getAll().get("area").toString();
+        String address=resultItems.getAll().get("address").toString();
+        Float price=Float.parseFloat(resultItems.getAll().get("price").toString());
+        String html=resultItems.getAll().get("html").toString();
 
         AJKBaseData data=new AJKBaseData(no,area,address,price,html);
+        System.out.println(data);
 
         ajkDao.insert(data);
 

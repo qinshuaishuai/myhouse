@@ -1,9 +1,12 @@
 package com.magic.house;
 
-import org.mybatis.spring.annotation.MapperScan;
+
+import com.magic.house.process.PageProcess;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import us.codecraft.webmagic.Spider;
+import us.codecraft.webmagic.pipeline.ConsolePipeline;
 
 /**
  *
@@ -15,5 +18,8 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 public class Application extends SpringBootServletInitializer {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
+        Spider.create(new PageProcess()).addUrl("https://zz.fang.anjuke.com/loupan/all/p1/").
+                addPipeline(new ConsolePipeline()).thread(1).run();
+
     }
 }

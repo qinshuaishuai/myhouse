@@ -42,7 +42,7 @@
         </layout>
     </appender>
 
-    <logger name="yxm.zyf.love" additivity="false"><!-包名->
+    <logger name="yxm.zyf.love" additivity="false">
         <level value="debug" />
         <appender-ref ref="HOSPITAL-WEB" />
         <appender-ref ref="ERROR-APPENDER" />

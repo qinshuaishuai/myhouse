@@ -1,6 +1,7 @@
 package com.magic.house.process;
 
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.io.*;
@@ -15,6 +16,7 @@ import us.codecraft.webmagic.model.HttpRequestBody;
 import us.codecraft.webmagic.pipeline.ConsolePipeline;
 import us.codecraft.webmagic.pipeline.JsonFilePipeline;
 import us.codecraft.webmagic.processor.PageProcessor;
+import us.codecraft.webmagic.selector.Selectable;
 
 import javax.swing.text.html.HTML;
 
@@ -24,36 +26,37 @@ public class PageProcess implements PageProcessor {
 
     @Value("${process.html.save.path}")
     private String savePath;
-
     private Site site = Site.me().setCharset("utf8").setRetryTimes(3).setSleepTime(100);
+
+    /**列表页*/
+    private static String listPage="^https://zz.fang.anjuke.com/loupan/all/p\\d+/";
+    /**详情页*/
+    private static String detailPage="\"https://zz.fang.anjuke.com/loupan/\\\\d+.html\"";
 
 
     @Override
     public void process(Page page) {
-
-        System.out.println("------------------------------------------------------------");
-//        System.out.println(page.getHtml());
-
-//        List<String> imgs = page.getHtml().css("div.key-list").css("div.item-mod").css("img","src").all();
-//        List<String> names= page.getHtml().css("div.key-list").xpath("//span[@class='items-name']").css("span","text").all();
-//        List<String> houseType= page.getHtml().css("div.key-list").css("a.huxing").all();
-//        List<String> prices= page.getHtml().css("div.key-list").xpath("//a[@class='favor-pos']").xpath("//p[@class='price]").all();
-
-        List<String> datalink=page.getHtml().css("div.key-list").css("div.item-mod","data-link").all();
+        List<String> datalink = page.getHtml().css("div.key-list").css("div.item-mod", "data-link").all(); //获取详情页面
         page.addTargetRequests(datalink);
 
-        //buildHtml(page.getBytes());
+        if(page.getUrl().regex(detailPage).match()){
+            page.putField("name", page.getHtml().$("h1#j-triggerlayer", "text").get());
+            String price = page.getHtml().$("em.sp-price", "text").get();
+            if (StringUtils.isBlank(price)) {
+                price = page.getHtml().$("dd.around-price span", "text").get();
+            }
+            page.putField("price", price);
+            page.putField("address", page.getHtml().$("span.lpAddr-text", "text").get());
+            String url=page.getUrl().get();
+            page.putField("url",url);
 
-        page.putField("name",page.getHtml().$("h1#j-triggerlayer","text").get());
 
-        page.putField("price",page.getHtml().$("em.sp-price","text").get());
-
-        page.putField("address",page.getHtml().$("span.lpAddr-text","text").get());
-
-        if(page.getResultItems().get("name")==null){
-            page.setSkip(true);
         }
-
+        /*匹配分页*/
+        if (page.getUrl().regex(listPage).match()) {
+            List<String> links = page.getHtml().$(".next-page").links().all();
+            page.addTargetRequests(links);
+        }
     }
 
     @Override
@@ -61,38 +64,14 @@ public class PageProcess implements PageProcessor {
         return site;
     }
 
-    public static void buildHtml(byte[] bytes){
-        Long time=System.currentTimeMillis();
-
-
-        String filePath="/Users/qinshuai/work/html/";
-
-        File file=new File(filePath+time+".html");
-        if(!file.exists()){
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        try {
-            FileOutputStream fileOutputStream=new FileOutputStream(file);
-            fileOutputStream.write(bytes);
-            fileOutputStream.flush();
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    public static void main(String[] args) {
-        String filePath="/Users/qinshuai/work/html/";
-
-        Spider.create(new PageProcess()).addUrl("https://zz.fang.anjuke.com/?from=navigation").
-                addPipeline(new ConsolePipeline()).thread(5).run();
-    }
+//    public static void main(String[] args) {
+//        String filePath = "/Users/qinshuai/work/html/";
+//
+////        Spider.create(new PageProcess()).addUrl("https://zz.fang.anjuke.com/?from=navigation").
+////                addPipeline(new ConsolePipeline()).thread(5).run();
+//
+//        Spider.create(new PageProcess()).addUrl("https://zz.fang.anjuke.com/loupan/all/p1/").
+//                addPipeline(new ConsolePipeline()).thread(1).run();
+//    }
 
 }

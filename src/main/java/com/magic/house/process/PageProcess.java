@@ -41,8 +41,6 @@ public class PageProcess implements PageProcessor {
             String url=page.getUrl().get();
             page.putField("html",url);
             page.putField("no", Util.extractData(url,"\\d+"));
-
-
         }
         /*匹配分页*/
         if (page.getUrl().regex(listPage).match()) {

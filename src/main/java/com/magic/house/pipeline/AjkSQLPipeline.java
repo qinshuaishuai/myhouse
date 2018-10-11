@@ -4,6 +4,7 @@ import com.magic.house.dao.AJKDao;
 import com.magic.house.model.AJKBaseData;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.ResultItems;
 import us.codecraft.webmagic.Task;
@@ -24,17 +25,15 @@ public class AjkSQLPipeline implements Pipeline {
 
     @Override
     public void process(ResultItems resultItems, Task task) {
-        System.out.println(resultItems.getAll());
+        if(resultItems.getAll().isEmpty()){
+            return;
+        }
         String no=resultItems.getAll().get("no").toString();
         String area=resultItems.getAll().get("area").toString();
         String address=resultItems.getAll().get("address").toString();
         Float price=Float.parseFloat(resultItems.getAll().get("price").toString());
         String html=resultItems.getAll().get("html").toString();
-
         AJKBaseData data=new AJKBaseData(no,area,address,price,html);
-        System.out.println(data);
-
         ajkDao.insert(data);
-
     }
 }

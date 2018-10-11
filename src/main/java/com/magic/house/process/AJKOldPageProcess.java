@@ -1,5 +1,7 @@
 package com.magic.house.process;
 
+import com.magic.house.pipeline.AjkOldSQLPipeline;
+
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
@@ -22,15 +24,13 @@ public class AJKOldPageProcess implements PageProcessor {
     private static String detailPage="https://zhengzhou.anjuke.com/prop/view/A\\d+\\?([\\s\\S]*)";
 
 
-    /*https://zhengzhou.anjuke.com/prop/view/A1413225968?from=filter&spread=commsearch_p&position=1&kwtype=filter&now_time=1539242800*/
-    /*https://zhengzhou.anjuke.com/prop/view/A1397502338?from=filter&spread=commsearch_p&position=2&kwtype=filter&now_time=1539242800*/
     @Override
     public void process(Page page) {
         List<String> datalink = page.getHtml().css("div.house-details").css("div.house-title").css("a", "href").all();
         page.addTargetRequests(datalink);
         if(page.getUrl().regex(detailPage).match()){
-//            String houseInfo=page.getHtml().
-//            System.out.println(page.getHtml().$(""));
+            List<String> houseInfos=page.getHtml().css("li.houseInfo-detail-item").css("div.houseInfo-content","innerHTML").all();
+            page.putField("infos",houseInfos);
         }
 
          /*匹配分页*/
@@ -48,6 +48,6 @@ public class AJKOldPageProcess implements PageProcessor {
     public static void main(String[] args) {
         String ajkurl = "https://zhengzhou.anjuke.com/sale/";
         Spider.create(new AJKOldPageProcess()).addUrl(ajkurl).
-                addPipeline(new ConsolePipeline()).thread(1).run();
+                addPipeline(new AjkOldSQLPipeline()).thread(1).run();
     }
 }

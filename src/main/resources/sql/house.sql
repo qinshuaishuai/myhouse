@@ -20,15 +20,14 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 -- Table structure for h_new
 -- ----------------------------
-DROP TABLE IF EXISTS `h_new`;
-CREATE TABLE `h_new` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `h_ajk_new`;
+CREATE TABLE `h_ajk_new` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `no` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '编号',
   `area` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '小区',
   `address` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '地址',
-  `price` FLOAT (18,2) DEFAULT NULL COMMENT '价格',
+  `price` float(18,2) DEFAULT NULL COMMENT '价格',
   `html` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT 'html地址',
+  `date` date DEFAULT NULL COMMENT '日期',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
-SET FOREIGN_KEY_CHECKS = 1;

@@ -7,7 +7,7 @@
   <groupId>com.magic.house</groupId>
   <artifactId>myhouse</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <packaging>pom</packaging>
+  <packaging>war</packaging>
 
   <name>myhouse Maven Webapp</name>
   <!-- FIXME change it to the project's website -->
@@ -59,12 +59,6 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
-      <exclusions>
-        <exclusion>
-          <groupId>ch.qos.logback</groupId>
-          <artifactId>logback-classic</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
     <!--测试-->
     <dependency>
@@ -133,17 +127,14 @@
       <groupId>us.codecraft</groupId>
       <artifactId>webmagic-extension</artifactId>
       <version>0.7.3</version>
-      <exclusions>
-        <exclusion>
-          <groupId>org.slf4j</groupId>
-          <artifactId>slf4j-log4j12</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>ch.qos.logback</groupId>
-          <artifactId>logback-classic</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
+
+    <dependency>
+      <groupId>org.jsoup</groupId>
+      <artifactId>jsoup</artifactId>
+      <version>1.11.3</version>
+    </dependency>
+
 
 
 

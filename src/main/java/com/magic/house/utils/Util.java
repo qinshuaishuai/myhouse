@@ -47,4 +47,8 @@ public class Util {
         return "";
     }
 
+    public static void main(String[] args) {
+        System.out.println(extractData("17952 元/m²","\\d+"));
+    }
+
 }

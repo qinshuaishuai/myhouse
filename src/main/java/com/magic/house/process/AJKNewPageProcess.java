@@ -12,7 +12,7 @@ import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.processor.PageProcessor;
 
-public class PageProcess implements PageProcessor {
+public class AJKNewPageProcess implements PageProcessor {
 
 
     @Value("${process.html.save.path}")

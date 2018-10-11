@@ -1,14 +1,11 @@
 package com.magic.house.Jobs;
 
 import com.magic.house.pipeline.AjkSQLPipeline;
-import com.magic.house.process.PageProcess;
-import com.magic.house.utils.Dates;
+import com.magic.house.process.AJKNewPageProcess;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.Spider;
-
-import java.util.Date;
 
 /**
  * @author lenovo
@@ -32,7 +29,7 @@ public class AJKJob {
     @Scheduled(cron="0 0 12 * * ?")
     public void dayJob(){
         String ajkurl = "https://zz.fang.anjuke.com/loupan/all/p1/";
-        Spider.create(new PageProcess()).addUrl(ajkurl).
+        Spider.create(new AJKNewPageProcess()).addUrl(ajkurl).
                 addPipeline(ajkSQLPipeline).thread(1).run();
     }
 }

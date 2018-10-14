@@ -45,9 +45,4 @@ public class AJKOldPageProcess implements PageProcessor {
         return site;
     }
 
-    public static void main(String[] args) {
-        String ajkurl = "https://zhengzhou.anjuke.com/sale/";
-        Spider.create(new AJKOldPageProcess()).addUrl(ajkurl).
-                addPipeline(new AjkOldSQLPipeline()).thread(1).run();
-    }
 }

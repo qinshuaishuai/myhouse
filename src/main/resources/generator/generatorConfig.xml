@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!--<properties resource="application.properties"/>-->
+
+    <context id="Mysql" targetRuntime="MyBatis3" defaultModelType="flat">
+
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+
+        <!-- 为生成的Java模型创建一个toString方法 -->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin>
+
+        <commentGenerator>
+            <property name="suppressDate" value="false"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <jdbcConnection driverClass="${spring.datasource.driver-class-name}"
+                        connectionURL="${spring.datasource.url}"
+                        userId="${spring.datasource.username}"
+                        password="${spring.datasource.password}">
+        </jdbcConnection>
+
+
+        <javaModelGenerator targetPackage="com.magic.house.model" targetProject="src/main/java">
+            <!-- 基础bean的继承操作，将通用属性集成到BaseEntity内部 -->
+            <!--<property name="rootClass" value="org.zj.clue.model.BaseEntity"/>-->
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
+
+        <javaClientGenerator targetPackage="com.magic.house.dao" targetProject="src/main/java" type="XMLMAPPER"/>
+
+
+        <table tableName="h_ajk_new" domainObjectName="AJKBaseData" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="h_ajk_old" domainObjectName="AJKOldHouseData" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <!--<table tableName="admin_setting" domainObjectName="AdminSetting"><property name="fuseActualColumnNames" value="true"/><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>-->
+        <!--<table tableName="admin_user" domainObjectName="AdminUser"><property name="useActualColumnNames" value="true"/><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>-->
+        <!--<table tableName="case_ajss" domainObjectName="CaseAjssModel"><property name="useActualColumnNames" value="true"/><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>-->
+        <!--<table tableName="case_ajws" domainObjectName="CaseAjws"><property name="useActualColumnNames" value="true"/><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>-->
+        <!--<table tableName="case_base_by_user" domainObjectName="CaseBaseByUser"><property name="useActualColumnNames" value="true"/><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>-->
+        <!--<table tableName="case_base_info" domainObjectName="CaseBaseInfo"><property name="useActualColumnNames" value="true"/><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>-->
+        <!--<table tableName="case_cfjd" domainObjectName="CaseCfjd"><property name="useActualColumnNames" value="true"/><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>-->
+        <!--<table tableName="case_dczz" domainObjectName="CaseDczz"><property name="useActualColumnNames" value="true"/><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>-->
+        <!--<table tableName="case_ja" domainObjectName="CaseJa"><property name="useActualColumnNames" value="true"/><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>-->
+        <!--<table tableName="case_sl" domainObjectName="CaseSl"><property name="useActualColumnNames" value="true"/><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>-->
+        <!--<table tableName="case_xa" domainObjectName="CaseXa"><property name="useActualColumnNames" value="true"/><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>-->
+        <!--<table tableName="case_yssf" domainObjectName="CaseYssf"><property name="useActualColumnNames" value="true"/><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>-->
+        <!--<table tableName="clue_base_by_user" domainObjectName="ClueBaseByUser"><property name="useActualColumnNames" value="true"/><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>-->
+        <!--<table tableName="clue_base_info" domainObjectName="ClueBaseInfo"><property name="useActualColumnNames" value="true"/><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>-->
+        <!--<table tableName="clue_base_problem" domainObjectName="ClueBaseProblem"><property name="useActualColumnNames" value="true"/><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>-->
+        <!--<table tableName="clue_base_user" domainObjectName="ClueBaseUser"><property name="useActualColumnNames" value="true"/><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>-->
+        <!--<table tableName="clue_cbhs" domainObjectName="ClueCbhs"><property name="useActualColumnNames" value="true"/><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>-->
+        <!--<table tableName="clue_fb" domainObjectName="ClueFb"><property name="useActualColumnNames" value="true"/><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>-->
+        <!--<table tableName="clue_lj" domainObjectName="ClueLj"><property name="useActualColumnNames" value="true"/><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>-->
+        <!--<table tableName="clue_thhx" domainObjectName="ClueThhx"><property name="useActualColumnNames" value="true"/><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>-->
+        <!--<table tableName="clue_thxf" domainObjectName="ClueThxf"><property name="useActualColumnNames" value="true"/><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>-->
+        <!--<table tableName="clue_ysqtdw" domainObjectName="ClueYsqtdw"><property name="useActualColumnNames" value="true"/><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>-->
+        <!--<table tableName="clue_zc" domainObjectName="ClueZc"><property name="useActualColumnNames" value="true"/><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>-->
+
+    </context>
+</generatorConfiguration>

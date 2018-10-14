@@ -26,7 +26,7 @@
       <id>dev</id>
       <properties>
         <spring.datasource.driver-class-name>com.mysql.jdbc.Driver</spring.datasource.driver-class-name>
-        <spring.datasource.url><![CDATA[jdbc:mysql://localhost:3306/sapp?autoReconnect=true&useUnicode=true&characterEncoding=utf8]]></spring.datasource.url>
+        <spring.datasource.url><![CDATA[jdbc:mysql://localhost:3306/house?autoReconnect=true&useUnicode=true&characterEncoding=utf8]]></spring.datasource.url>
         <spring.datasource.username>root</spring.datasource.username>
         <spring.datasource.password>123456</spring.datasource.password>
       </properties>
@@ -38,7 +38,7 @@
       <id>pro</id>
       <properties>
         <spring.datasource.driver-class-name>com.mysql.jdbc.Driver</spring.datasource.driver-class-name>
-        <spring.datasource.url><![CDATA[jdbc:mysql://localhost:3306/sapp?autoReconnect=true&useUnicode=true&characterEncoding=utf8]]></spring.datasource.url>
+        <spring.datasource.url><![CDATA[jdbc:mysql://localhost:3306/house?autoReconnect=true&useUnicode=true&characterEncoding=utf8]]></spring.datasource.url>
         <spring.datasource.username>root</spring.datasource.username>
         <spring.datasource.password>sunying1314</spring.datasource.password>
       </properties>
@@ -147,38 +147,39 @@
 
   <build>
     <finalName>myhouse</finalName>
-    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <plugin>
-          <artifactId>maven-clean-plugin</artifactId>
-          <version>3.0.0</version>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+          <configuration>
+            <fork>true</fork>
+          </configuration>
         </plugin>
-        <!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging -->
+
         <plugin>
-          <artifactId>maven-resources-plugin</artifactId>
-          <version>3.0.2</version>
-        </plugin>
-        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.7.0</version>
+          <configuration>
+            <fork>true</fork>
+          </configuration>
         </plugin>
         <plugin>
-          <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.20.1</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-war-plugin</artifactId>
-          <version>3.2.0</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-install-plugin</artifactId>
-          <version>2.5.2</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-deploy-plugin</artifactId>
-          <version>2.8.2</version>
+          <groupId>org.mybatis.generator</groupId>
+          <artifactId>mybatis-generator-maven-plugin</artifactId>
+          <version>1.3.6</version>
+          <configuration>
+            <configurationFile>${basedir}/src/main/resources/generator/generatorConfig.xml</configurationFile>
+            <overwrite>true</overwrite>
+            <verbose>true</verbose>
+          </configuration>
+          <dependencies>
+            <dependency>
+              <groupId>mysql</groupId>
+              <artifactId>mysql-connector-java</artifactId>
+              <version>5.1.46</version>
+            </dependency>
+          </dependencies>
         </plugin>
       </plugins>
-    </pluginManagement>
   </build>
 </project>

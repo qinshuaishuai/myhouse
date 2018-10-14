@@ -21,11 +21,11 @@ public class AJKOldHouseData extends AJKBaseData{
     /**楼层*/
     private String houseFloor;
     /**首付*/
-    private Float housePay;
+    private String housePay;
     /**装修程度*/
     private String houseSpruce;
 
-    public AJKOldHouseData(String no, String area, String address, Float price, String html, String houseAge, String houseType, String houseAreas, String houseOrien, String houseFloor, Float housePay, String houseSpruce) {
+    public AJKOldHouseData(String no, String area, String address, Float price, String html, String houseAge, String houseType, String houseAreas, String houseOrien, String houseFloor, String housePay, String houseSpruce) {
         super(no, area, address, price, html);
         this.houseAge = houseAge;
         this.houseType = houseType;
@@ -79,11 +79,11 @@ public class AJKOldHouseData extends AJKBaseData{
         this.houseFloor = houseFloor;
     }
 
-    public Float getHousePay() {
+    public String getHousePay() {
         return housePay;
     }
 
-    public void setHousePay(Float housePay) {
+    public void setHousePay(String housePay) {
         this.housePay = housePay;
     }
 

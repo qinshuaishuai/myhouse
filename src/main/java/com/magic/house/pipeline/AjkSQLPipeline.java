@@ -1,10 +1,9 @@
 package com.magic.house.pipeline;
 
-import com.magic.house.dao.AJKDao;
+import com.magic.house.dao.AJKBaseDataMapper;
 import com.magic.house.model.AJKBaseData;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.ResultItems;
 import us.codecraft.webmagic.Task;
@@ -21,7 +20,7 @@ import us.codecraft.webmagic.pipeline.Pipeline;
 public class AjkSQLPipeline implements Pipeline {
 
     @Autowired
-    private AJKDao ajkDao;
+    private AJKBaseDataMapper ajkDao;
 
     @Override
     public void process(ResultItems resultItems, Task task) {

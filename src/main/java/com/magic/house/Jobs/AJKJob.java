@@ -28,7 +28,7 @@ public class AJKJob {
 
     @Scheduled(fixedDelay = ONE_HOUR)
     public void fixedDelayJob1() {
-        String ajkurl = "https://zhengzhou.anjuke.com/sale/";
+        String ajkurl = "https://zhengzhou.anjuke.com/sale/p1/";
         Spider.create(new AJKOldPageProcess()).addUrl(ajkurl).
                 addPipeline(ajkOldSQLPipeline).thread(1).run();
     }
@@ -45,7 +45,7 @@ public class AJKJob {
 
     @Scheduled(cron = "0 0 11 * * ?")
     public void dayOldJob() {
-        String ajkurl = "https://zhengzhou.anjuke.com/sale/";
+        String ajkurl = "https://zhengzhou.anjuke.com/sale/p1/";
         Spider.create(new AJKOldPageProcess()).addUrl(ajkurl).
                 addPipeline(ajkOldSQLPipeline).thread(1).run();
     }

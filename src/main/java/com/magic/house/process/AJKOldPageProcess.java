@@ -35,7 +35,7 @@ public class AJKOldPageProcess implements PageProcessor {
 
          /*匹配分页*/
         if (page.getUrl().regex(listPage).match()) {
-            List<String> links = page.getHtml().$(".next-page").links().all();
+            List<String> links = page.getHtml().$(".aNxt").links().all();
             page.addTargetRequests(links);
         }
     }

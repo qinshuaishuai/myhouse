@@ -8,7 +8,7 @@
     <result column="address" jdbcType="VARCHAR" property="address" />
     <result column="price" jdbcType="REAL" property="price" />
     <result column="html" jdbcType="VARCHAR" property="html" />
-    <result column="date" jdbcType="DATE" property="date" />
+    <result column="date" jdbcType="DATE" property="day" />
     <result column="house_age" jdbcType="VARCHAR" property="houseAge" />
     <result column="house_type" jdbcType="VARCHAR" property="houseType" />
     <result column="house_areas" jdbcType="VARCHAR" property="houseAreas" />
@@ -18,7 +18,7 @@
     <result column="house_spruce" jdbcType="VARCHAR" property="houseSpruce" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, no, area, address, price, html, date, house_age, house_type, house_areas, house_orien, 
+    id, no, area, address, price, html, day, house_age, house_type, house_areas, house_orien,
     house_floor, house_pay, house_spruce
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -36,12 +36,12 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into h_ajk_old (no, area, address, 
-      price, html, date, house_age, 
+      price, html, day, house_age,
       house_type, house_areas, house_orien, 
       house_floor, house_pay, house_spruce
       )
     values (#{no,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
-      #{price,jdbcType=REAL}, #{html,jdbcType=VARCHAR}, #{date,jdbcType=DATE}, #{houseAge,jdbcType=VARCHAR}, 
+      #{price,jdbcType=REAL}, #{html,jdbcType=VARCHAR}, #{day,jdbcType=DATE}, #{houseAge,jdbcType=VARCHAR},
       #{houseType,jdbcType=VARCHAR}, #{houseAreas,jdbcType=VARCHAR}, #{houseOrien,jdbcType=VARCHAR}, 
       #{houseFloor,jdbcType=VARCHAR}, #{housePay,jdbcType=VARCHAR}, #{houseSpruce,jdbcType=VARCHAR}
       )
@@ -67,8 +67,8 @@
       <if test="html != null">
         html,
       </if>
-      <if test="date != null">
-        date,
+      <if test="day != null">
+        day,
       </if>
       <if test="houseAge != null">
         house_age,
@@ -108,8 +108,8 @@
       <if test="html != null">
         #{html,jdbcType=VARCHAR},
       </if>
-      <if test="date != null">
-        #{date,jdbcType=DATE},
+      <if test="day != null">
+        #{day,jdbcType=DATE},
       </if>
       <if test="houseAge != null">
         #{houseAge,jdbcType=VARCHAR},
@@ -152,8 +152,8 @@
       <if test="html != null">
         html = #{html,jdbcType=VARCHAR},
       </if>
-      <if test="date != null">
-        date = #{date,jdbcType=DATE},
+      <if test="day != null">
+        day = #{day,jdbcType=DATE},
       </if>
       <if test="houseAge != null">
         house_age = #{houseAge,jdbcType=VARCHAR},
@@ -186,7 +186,7 @@
       address = #{address,jdbcType=VARCHAR},
       price = #{price,jdbcType=REAL},
       html = #{html,jdbcType=VARCHAR},
-      date = #{date,jdbcType=DATE},
+      day = #{day,jdbcType=DATE},
       house_age = #{houseAge,jdbcType=VARCHAR},
       house_type = #{houseType,jdbcType=VARCHAR},
       house_areas = #{houseAreas,jdbcType=VARCHAR},

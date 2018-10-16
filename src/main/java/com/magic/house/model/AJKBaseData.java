@@ -25,7 +25,7 @@ public class AJKBaseData implements Serializable {
 
     private String html;
 
-    private Date date;
+    private Date day;
 
     public AJKBaseData(){}
 
@@ -35,7 +35,7 @@ public class AJKBaseData implements Serializable {
         this.address = address;
         this.price = price;
         this.html = html;
-        this.date = new Date();
+        this.day = new Date();
     }
 
     public Integer getId() {
@@ -86,12 +86,12 @@ public class AJKBaseData implements Serializable {
         this.html = html;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getDay() {
+        return day;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDay(Date day) {
+        this.day = day;
     }
 
     @Override

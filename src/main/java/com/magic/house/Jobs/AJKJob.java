@@ -11,6 +11,9 @@ import org.springframework.stereotype.Component;
 
 import us.codecraft.webmagic.Spider;
 
+import static com.magic.house.utils.Config.AJK_LOUPAN_URL;
+import static com.magic.house.utils.Config.AJK_OLD_URL;
+
 /**
  * @author lenovo
  * @date 2018/10/11 描述：安居客定时任务
@@ -36,15 +39,13 @@ public class AJKJob {
 
     @Scheduled(cron = "0 0 12 * * ?")
     public void dayNewJob() {
-        String ajkurl = "https://zz.fang.anjuke.com/loupan/all/p1/";
-        Spider.create(new AJKNewPageProcess()).addUrl(ajkurl).
+        Spider.create(new AJKNewPageProcess()).addUrl(AJK_LOUPAN_URL).
                 addPipeline(ajkSQLPipeline).thread(1).run();
     }
 
-    @Scheduled(cron = "0 0 11 * * ?")
+    @Scheduled(cron = "0 0 10 * * ?")
     public void dayOldJob() {
-        String ajkurl = "https://zhengzhou.anjuke.com/sale/p1/";
-        Spider.create(new AJKOldPageProcess()).addUrl(ajkurl).
+        Spider.create(new AJKOldPageProcess()).addUrl(AJK_OLD_URL).
                 addPipeline(ajkOldSQLPipeline).thread(1).run();
     }
 }

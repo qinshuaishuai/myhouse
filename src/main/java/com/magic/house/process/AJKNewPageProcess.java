@@ -17,7 +17,12 @@ public class AJKNewPageProcess implements PageProcessor {
 
     @Value("${process.html.save.path}")
     private String savePath;
-    private Site site = Site.me().setCharset("utf8").setRetryTimes(3).setSleepTime(100);
+
+
+    private Site site = Site.me().setCharset("utf8").setRetryTimes(3).setSleepTime(100)
+            .addHeader("User-Agent","ozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.80 Safari/537.36 Core/1.47.516.400 QQBrowser/9.4.8188.400")
+            .addHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8")
+            .addHeader("Accept-Encoding", "gzip, deflate, sdch").addHeader("Accept-Language", "zh-CN,zh;q=0.8");;
 
     /**列表页*/
     private static String listPage="^https://zz.fang.anjuke.com/loupan/all/p\\d+/";

@@ -1,11 +1,7 @@
 package com.magic.house.process;
 
-import com.magic.house.pipeline.AjkOldSQLPipeline;
-
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
-import us.codecraft.webmagic.Spider;
-import us.codecraft.webmagic.pipeline.ConsolePipeline;
 import us.codecraft.webmagic.processor.PageProcessor;
 
 import java.util.List;

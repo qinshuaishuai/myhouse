@@ -55,7 +55,11 @@ public class Util {
                 "<a href=\"https://zhengzhou.anjuke.com/sale/guwancheng/\" target=\"_blank\" _soj=\"propview\">古玩城</a>" +
                 "－ 兴华南街,近政通路</p> \n";
         String data=extractData(html1,"([\\u4e00-\\u9fa5]+)");
+        System.out.println(extractData("asdas","\\d+"));
         System.out.println(data);
+
+        String h1="https://zhengzhou.anjuke.com/prop/view/A1452369995?from=filter&spread=commsearch_p&position=1&kwtype=filter&now_time=1539786590";
+        System.out.println(extractData(h1,"A\\d+"));
 
     }
 }

@@ -33,9 +33,9 @@ public class AjkOldSQLPipeline implements Pipeline {
             /*小区名称*/
             String area= HtmlParse.getValue(infos.get(0),"a");
 
-            String html=HtmlParse.getValue(infos.get(0),"a","href");
+            String html=resultItems.getAll().get("url").toString();
 
-            String no= Util.extractData(html,"\\d+");
+            String no= Util.extractData(html,"A\\d+");
 
             String houseType=infos.get(1);
 

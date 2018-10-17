@@ -36,6 +36,9 @@ public class AJKNewPageProcess implements PageProcessor {
             if (StringUtils.isBlank(price)) {
                 price = page.getHtml().$("dd.around-price span", "text").get();
             }
+            if(StringUtils.isBlank(price) || StringUtils.isEmpty(Util.extractData(price,"\\d+"))){
+                price="0";
+            }
             page.putField("price", price);
             page.putField("address", page.getHtml().$("span.lpAddr-text", "text").get());
             String url=page.getUrl().get();

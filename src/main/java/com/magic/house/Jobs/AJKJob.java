@@ -37,7 +37,7 @@ public class AJKJob {
 
 
 
-    @Scheduled(cron = "0 0 12 * * ?")
+    @Scheduled(cron = "0 0 14 * * ?")
     public void dayNewJob() {
         Spider.create(new AJKNewPageProcess()).addUrl(AJK_LOUPAN_URL).
                 addPipeline(ajkSQLPipeline).thread(1).run();

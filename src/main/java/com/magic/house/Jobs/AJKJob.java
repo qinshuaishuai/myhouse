@@ -37,13 +37,13 @@ public class AJKJob {
 
 
 
-    @Scheduled(cron = "0 0 12 * * ?")
+    @Scheduled(cron = "0 0 14 * * ?")
     public void dayNewJob() {
         Spider.create(new AJKNewPageProcess()).addUrl(AJK_LOUPAN_URL).
                 addPipeline(ajkSQLPipeline).thread(1).run();
     }
 
-    @Scheduled(cron = "0 0 10 * * ?")
+    @Scheduled(cron = "0 0 1 * * ?")
     public void dayOldJob() {
         Spider.create(new AJKOldPageProcess()).addUrl(AJK_OLD_URL).
                 addPipeline(ajkOldSQLPipeline).thread(1).run();

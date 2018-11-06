@@ -25,6 +25,7 @@ public class AJKOldPageProcess implements PageProcessor {
 
     @Override
     public void process(Page page) {
+
         List<String> datalink = page.getHtml().css("div.house-details").css("div.house-title").css("a", "href").all();
         page.addTargetRequests(datalink);
         if(page.getUrl().regex(detailPage).match()){
@@ -38,6 +39,12 @@ public class AJKOldPageProcess implements PageProcessor {
         if (page.getUrl().regex(listPage).match()) {
             List<String> links = page.getHtml().$(".aNxt").links().all();
             page.addTargetRequests(links);
+        }
+
+        try {
+            Thread.sleep(15*1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 

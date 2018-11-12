@@ -41,11 +41,6 @@ public class AJKOldPageProcess implements PageProcessor {
             page.addTargetRequests(links);
         }
 
-        try {
-            Thread.sleep(15*1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override

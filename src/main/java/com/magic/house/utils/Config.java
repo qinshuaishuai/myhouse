@@ -1,5 +1,8 @@
 package com.magic.house.utils;
 
+/**
+ * @author qinshuai
+ */
 public class Config {
 
     /*安居客二手房首页地址*/

@@ -3,12 +3,19 @@ package com.magic.house.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import lombok.Data;
+import lombok.ToString;
+
+
 /**
  *
  * @author qinshuai
  * @date 2018/10/10
  * 描述：安居客录入基本数据
  */
+
+@ToString
+@Data
 public class AJKBaseData implements Serializable {
 
     private static final long serialVersionUID = 485334363880756865L;
@@ -38,71 +45,4 @@ public class AJKBaseData implements Serializable {
         this.day = new Date();
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNo() {
-        return no;
-    }
-
-    public void setNo(String no) {
-        this.no = no;
-    }
-
-    public String getArea() {
-        return area;
-    }
-
-    public void setArea(String area) {
-        this.area = area;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public Float getPrice() {
-        return price;
-    }
-
-    public void setPrice(Float price) {
-        this.price = price;
-    }
-
-    public String getHtml() {
-        return html;
-    }
-
-    public void setHtml(String html) {
-        this.html = html;
-    }
-
-    public Date getDay() {
-        return day;
-    }
-
-    public void setDay(Date day) {
-        this.day = day;
-    }
-
-    @Override
-    public String toString() {
-        return "AJKBaseData{" +
-                "id=" + id +
-                ", no='" + no + '\'' +
-                ", area='" + area + '\'' +
-                ", address='" + address + '\'' +
-                ", price=" + price +
-                ", html='" + html + '\'' +
-                '}';
-    }
 }

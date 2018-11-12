@@ -1,12 +1,16 @@
 package com.magic.house.model;
 
+import lombok.Data;
+import lombok.ToString;
+
 /**
  *
  * @author lenovo
  * @date 2018/10/11
  * 描述：安居客二手房信息
  */
-
+@Data
+@ToString
 public class AJKOldHouseData extends AJKBaseData{
 
     private static final long serialVersionUID = 3694585866126118251L;
@@ -39,73 +43,5 @@ public class AJKOldHouseData extends AJKBaseData{
     public AJKOldHouseData() {
     }
 
-    public String getHouseAge() {
-        return houseAge;
-    }
 
-    public void setHouseAge(String houseAge) {
-        this.houseAge = houseAge;
-    }
-
-    public String getHouseType() {
-        return houseType;
-    }
-
-    public void setHouseType(String houseType) {
-        this.houseType = houseType;
-    }
-
-    public String getHouseAreas() {
-        return houseAreas;
-    }
-
-    public void setHouseAreas(String houseAreas) {
-        this.houseAreas = houseAreas;
-    }
-
-    public String getHouseOrien() {
-        return houseOrien;
-    }
-
-    public void setHouseOrien(String houseOrien) {
-        this.houseOrien = houseOrien;
-    }
-
-    public String getHouseFloor() {
-        return houseFloor;
-    }
-
-    public void setHouseFloor(String houseFloor) {
-        this.houseFloor = houseFloor;
-    }
-
-    public String getHousePay() {
-        return housePay;
-    }
-
-    public void setHousePay(String housePay) {
-        this.housePay = housePay;
-    }
-
-    public String getHouseSpruce() {
-        return houseSpruce;
-    }
-
-    public void setHouseSpruce(String houseSpruce) {
-        this.houseSpruce = houseSpruce;
-    }
-
-    @Override
-    public String toString() {
-        return "AJKOldHouseData{" +
-                "super='" + super.toString() + '\'' +
-                "houseAge='" + houseAge + '\'' +
-                ", houseType='" + houseType + '\'' +
-                ", houseAreas='" + houseAreas + '\'' +
-                ", houseOrien='" + houseOrien + '\'' +
-                ", houseFloor='" + houseFloor + '\'' +
-                ", housePay=" + housePay +
-                ", houseSpruce='" + houseSpruce + '\'' +
-                '}';
-    }
 }

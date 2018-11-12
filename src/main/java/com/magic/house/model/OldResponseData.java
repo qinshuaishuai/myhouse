@@ -1,7 +1,9 @@
 package com.magic.house.model;
 
-import java.util.Arrays;
 import java.util.List;
+
+import lombok.Data;
+import lombok.ToString;
 
 /**
  *
@@ -9,6 +11,9 @@ import java.util.List;
  * @date 2018/11/6
  * 描述：
  */
+
+@Data
+@ToString
 public class OldResponseData {
 
     private String [] names;
@@ -17,28 +22,5 @@ public class OldResponseData {
 
     private List<OldData> oldDataList;
 
-    public String[] getNames() {
-        return names;
-    }
-
-    public void setNames(String[] names) {
-        this.names = names;
-    }
-
-    public String[] getTimes() {
-        return times;
-    }
-
-    public void setTimes(String[] times) {
-        this.times = times;
-    }
-
-    public List<OldData> getOldDataList() {
-        return oldDataList;
-    }
-
-    public void setOldDataList(List<OldData> oldDataList) {
-        this.oldDataList = oldDataList;
-    }
 }
 
